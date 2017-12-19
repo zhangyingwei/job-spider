@@ -25,9 +25,9 @@ public class JobConfigFactory {
         tc58.setUrl("http://bj.58.com/tech/?key=java&final=1&jump=1&PGTID=0d302408-0000-1cf0-9b96-81a2d7d67b64&ClickID=3");
         tc58.setGroup("jobs.58tc");
 
-//        jobConfig.addItem(zhilian);
-//        jobConfig.addItem(lagou);
-//        jobConfig.addItem(job51);
+        jobConfig.addItem(zhilian);
+        jobConfig.addItem(lagou);
+        jobConfig.addItem(job51);
         jobConfig.addItem(tc58);
 
         return jobConfig;
