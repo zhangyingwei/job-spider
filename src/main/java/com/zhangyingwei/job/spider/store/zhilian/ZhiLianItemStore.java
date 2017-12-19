@@ -3,6 +3,7 @@ package com.zhangyingwei.job.spider.store.zhilian;
 import com.zhangyingwei.cockroach.executer.Task;
 import com.zhangyingwei.cockroach.executer.TaskResponse;
 import com.zhangyingwei.cockroach.store.IStore;
+import com.zhangyingwei.job.spider.job.JobItem;
 import org.jsoup.select.Elements;
 
 import java.util.stream.Collectors;
@@ -19,13 +20,20 @@ public class ZhiLianItemStore implements IStore {
         Elements titleBox = response.select(".top-fixed-box").select(".fl");
         String title = titleBox.select("h1").text();
         String company = response.select(".company-name-t").select("a").text();
+
         Elements jobInfos = response.select(".terminalpage").select("ul").select("li");
         String money = jobInfos.get(0).select("strong").text();
         String place = jobInfos.get(1).select("a").text();
-        System.out.println(title);
-        System.out.println(company);
-        System.out.println(money);
-        System.out.println(place);
-        System.out.println("----------");
+
+        Elements tabInnerBox = response.select(".tab-cont-box").select(".tab-inner-cont");
+        String desc = tabInnerBox.get(0).select("p").text();
+
+        JobItem jobItem = new JobItem();
+        jobItem.setTitle(title);
+        jobItem.setCompany(company);
+        jobItem.setMoney(money);
+        jobItem.setPlace(place);
+        jobItem.setDesc(desc);
+        System.out.println(jobItem);
     }
 }

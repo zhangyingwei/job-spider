@@ -1,4 +1,4 @@
-package com.zhangyingwei.job.spider.store.zhilian;
+package com.zhangyingwei.job.spider.store.lagou;
 
 import com.zhangyingwei.cockroach.executer.Task;
 import com.zhangyingwei.cockroach.executer.TaskResponse;
@@ -10,23 +10,23 @@ import com.zhangyingwei.cockroach.store.IStore;
  * @time: 下午8:52
  * @desc:
  */
-public class ZhiLianStore implements IStore {
-    private IStore item = new ZhiLianItemStore();
+public class LaGouStore implements IStore {
+    private IStore item = new LaGouItemStore();
     @Override
     public void store(TaskResponse response) throws Exception {
-        if (response.getGroup().startsWith("jobs.zhilian.items")) {
+        if (response.getGroup().startsWith("jobs.lagou.items")) {
             item.store(response);
             return;
         }
 
-        response.select("#newlist_list_div")
-                .select("table")
-                .select(".zwmc")
+        response.select("ul.item_con_list")
+                .select("li")
+                .select(".p_top")
                 .select("a").stream()
                 .map(element -> element.attr("href"))
                 .forEach(elem -> {
                     try {
-                        response.getQueue().push(new Task(elem,"jobs.zhilian.items"));
+                        response.getQueue().push(new Task(elem,"jobs.lagou.items"));
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
