@@ -16,7 +16,7 @@ import com.zhangyingwei.job.spider.store.JobStore;
 @EnableAutoConfiguration
 @AppName("招聘信息爬虫")
 @Store(JobStore.class)
-@ThreadConfig(num = 1)
+@ThreadConfig(num = 100,sleep = 0)
 @CookieConfig(cookieGenerator = CookieGenerator.class)
 @HttpHeaderConfig(headerGenerator = HeaderGenerator.class)
 public class JobSpiderApplication {

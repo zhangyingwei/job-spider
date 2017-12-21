@@ -29,7 +29,6 @@ public class JobConfigFactory {
         jobConfig.addItem(lagou);
         jobConfig.addItem(job51);
         jobConfig.addItem(tc58);
-
         return jobConfig;
     }
 }
